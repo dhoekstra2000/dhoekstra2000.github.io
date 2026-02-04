@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+@theme {
+    --font-serif: "Aleo", Georgia, Cambria, "Times New Roman", serif;
+}
