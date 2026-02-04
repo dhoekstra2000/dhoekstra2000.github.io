@@ -1,28 +1,11 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
 import { Image } from 'astro:assets';
 
 import profilePicture from '../images/profile_dhoekstra.jpeg';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="author" content="Douwe Hoekstra" />
-		<title>Douwe Hoekstra</title>
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-	</head>
-	<body>
-    <header>
-      <div class="header-content">
-	<h1>Douwe Hoekstra</h1>
-      </div>
-    </header>
-    <main>
+<BaseLayout>
       <section id="bio">
 	<div class="profile-picture">
 	  <Image src={profilePicture} alt="Photo of Douwe Hoekstra" layout='constrained'/>
@@ -105,16 +88,7 @@ import profilePicture from '../images/profile_dhoekstra.jpeg';
 	  <li><a href="https://github.com/dhoekstra2000/">My Github profile</a></li>
 	</ul>
       </section>
-    </main>
-    <footer>
-      <div class="footer-content">
-      <p class="footer-text">
-	Copyright 2026 &mdash; Douwe Hoekstra
-      </p>
-      </div>
-    </footer>
-	</body>
-</html>
+</BaseLayout>
 
 <style lang="scss">
 $header-color: #4281a4;
@@ -134,39 +108,9 @@ $main-font-family: "Aleo", "Gill Sans", sans-serif;
 $head-font-family: "Oswald", sans-serif;
 $serif-font-family: Georgia, serif;
 
-body {
-    margin: 0;
-    background-color: $light-shades;
-}
-
-* {
-    color: $dark-shades;
-    font-family: $main-font-family;
-    font-optical-sizing: auto;
-}
-
-header {
-    background-color: $main-brand-color;
-}
-
-.header-content{
-    max-width: 64rem;
-    margin: 0 auto;
-    padding: 8px;
-}
-
-header h1 {
-    margin: 0;
-    color: $light-shades;
-    text-align: center;
-    font-family: $main-font-family;
-}
-
-main {
-    max-width: 64rem;
-    margin: 0 auto;
-    background-color: $light-shades;
-    padding: 8px;
+address {
+    margin: 8px;
+    font-style: normal;
 }
 
 section {
@@ -200,35 +144,4 @@ section {
     flex: 3 0;
     padding: 8px;
 }
-
-a,:visited {
-    color: $dark-accent;
-}
-
-a:hover {
-    color: $light-accent;
-    text-decoration: none;
-}
-
-address {
-    margin: 8px;
-    font-style: normal;
-}
-
-footer {
-    background-color: $main-brand-color;
-}
-
-.footer-content {
-    max-width: 64rem;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-}
-
-.footer-text {
-    color: $light-shades;
-}
-
 </style>
