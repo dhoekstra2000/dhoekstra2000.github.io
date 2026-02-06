@@ -1,0 +1,58 @@
+---
+layout: ../layouts/BaseProseLayout.astro
+---
+import BioSection from '../components/BioSection.astro';
+import { Image } from "astro:assets";
+import profilePicture from "../images/profile_dhoekstra.jpeg";
+
+<BioSection>
+<Image
+				src={profilePicture}
+				alt="Photo of Douwe Hoekstra"
+				layout="constrained"
+				slot="picture"
+			/>
+I am a PhD candidate at the [Utrecht Geometry Centre](https://utrechtgeometrycentre.nl)
+under the supervision of [Dr. Álvaro del Pino Gómez](https://alvarodelpino.com).
+My work focusses on the h-principle and in particular convex integration
+as a method to prove h-principles.
+
+My interests lie more generally within the field of
+				geometric/differential topology. The line between geometric
+				topology, differential topology and differential geometry is
+				blurry and the different fields have an important interplay, but
+				at its simplest I am interested in the interplay between the
+				geometric structure on a manifold and the underlying topology of
+				the manifold (or other spaces associated to the geometric
+				structure). To name a few examples in this spirit:
+- The de Rham isomorphism theorem
+- Morse functions
+- Myers' theorem: complete Riemannian manifolds with positive Ricci curvature are compact
+- Smale-Hirsch immersion theorem & Smale's sphere eversion
+
+See the [contact section](#contact) for information on how to get in touch.
+</BioSection>
+
+## Education
+- 2021 -- 2024: MSc in Mathematics, Radboud University Nijmegen.
+- 2018 -- 2021: BSc in Mathematics, Radboud University Nijmegen.
+- 2018 -- 2021: BSc in Mathematics, Radboud University Nijmegen.
+
+## Contact
+You can reach me at d.hoekstra [at] uu.nl
+
+My work address is:
+<address class="px-4">
+				Hans Freudenthal building<br />
+				Room 8.04<br />
+				Budapestlaan 6<br />
+				3584 CD Utrecht<br />
+				The Netherlands
+			</address>
+
+### Other web presence
+You can also find me here online:
+- [My profile page at the UU](https://uu.nl/staff/DHoekstra)
+- [My ORCiD](https://orcid.org/0000-0002-9598-470)
+- [My Linkedin profile](https://linkedin.com/in/d-hoekstra)
+- [My Github Profile](https://github.com/dhoekstra2000)

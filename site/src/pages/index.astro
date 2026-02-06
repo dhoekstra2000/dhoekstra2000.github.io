@@ -1,21 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+import BioSection from "../components/BioSection.astro";
+
 import { Image } from "astro:assets";
 
 import profilePicture from "../images/profile_dhoekstra.jpeg";
 ---
 
 <BaseLayout>
-	<section class="flex flex-col md:flex-row items-center">
-		<div class="md:w-1/3 p-4">
+	<BioSection>
 			<Image
 				src={profilePicture}
 				alt="Photo of Douwe Hoekstra"
 				layout="constrained"
+				slot="picture"
 			/>
-		</div>
-		<div class="md:w-2/3 p-4">
 			<p class="font-serif py-1">
 				I am a PhD candidate at the <a
 					class="text-slate-800 underline hover:no-underline"
@@ -57,8 +57,7 @@ import profilePicture from "../images/profile_dhoekstra.jpeg";
 					href="#contact">contact section</a
 				> for information on how to get in touch.
 			</p>
-		</div>
-	</section>
+		</BioSection>
 	<section class="px-4 py-2">
 		<h2 class="font-semibold text-2xl font-serif">Education</h2>
 		<ul class="font-serif list-disc px-4">
