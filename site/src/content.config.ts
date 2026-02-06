@@ -11,6 +11,7 @@ const teaching = defineCollection({
         role: z.string(),
         institute: z.string(),
         year: z.number(),
+        start_date: z.date(),
         period: z.string()
     })
 });
