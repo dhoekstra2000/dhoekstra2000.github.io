@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-const teaching = await getCollection("teaching");
+let teaching = await getCollection("teaching");
+teaching = teaching.sort((a, b) => 
+    b.data.start_date.valueOf() - a.data.start_date.valueOf(),
+);
 ---
 
 <div>
