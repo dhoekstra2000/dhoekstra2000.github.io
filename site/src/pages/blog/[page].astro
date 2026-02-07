@@ -1,0 +1,26 @@
+---
+import type { GetStaticPathsOptions } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostList from "../../components/PostList.astro";
+import { getAllBlogPosts } from "../../code/content";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const posts = await getAllBlogPosts();
+    const routes = paginate(posts, { pageSize: 3 });
+    return routes;
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout>
+    <h1 class="font-bold text-4xl my-2">Blog</h1>
+
+    <PostList posts={page.data} />
+
+    <nav class="py-2" aria-label="pagination">
+        {page.url.prev && <a class="text-slate-700 underline hover:no-underline" href={page.url.prev}>Previous page</a>}
+        <span>Page {page.currentPage} of {page.lastPage}</span>
+        {page.url.next && <a class="text-slate-700 underline hover:no-underline" href={page.url.next}>Next page</a>}
+    </nav>
+</BaseLayout>
