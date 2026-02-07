@@ -16,4 +16,14 @@ const teaching = defineCollection({
     })
 });
 
-export const collections = { teaching };
+const blog = defineCollection({
+    loader: glob({ pattern: "*.md", base: "./src/content/blog" }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        pubDate: z.coerce.date(),
+        tags: z.array(z.string()),
+    }),
+});
+
+export const collections = { teaching, blog };

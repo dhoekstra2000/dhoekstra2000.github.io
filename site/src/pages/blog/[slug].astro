@@ -1,0 +1,55 @@
+---
+import { getAllBlogPosts } from "../../code/content";
+
+import { render } from "astro:content";
+import BaseProseLayout from "../../layouts/BaseProseLayout.astro";
+import TagComponent from "../../components/TagComponent.astro";
+
+export async function getStaticPaths() {
+    const posts = await getAllBlogPosts();
+    const routes = posts.map((post) => ({
+        params: {
+            slug: post.id,
+        },
+        props: { post },
+    }));
+    return routes;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+const { headings, Content } = await render(post);
+---
+
+<BaseProseLayout>
+    <div class="not-prose mb-4">
+        <h1 class="font-bold text-4xl">{title}</h1>
+        <p class="text-lg text-slate-600">
+            Published on {pubDate.toLocaleDateString()}
+            {tags.map((tag) => <TagComponent>{tag}</TagComponent>)}
+        </p>
+        <p class="text-xl font-light tracking-wide">{description}</p>
+    </div>
+
+    {
+        headings.length > 0 && (
+            <nav class="not-prose">
+                <h2 class="font-bold text-2xl">Table of contents</h2>
+                <ul class="list-disc list-inside p-2">
+                    {headings.map((heading) => (
+                        <li class={`ps-${(heading.depth - 2) * 4}`}>
+                            <a
+                                class="text-slate-700 underline hover:no-underline"
+                                href={`#${heading.slug}`}
+                            >
+                                {heading.text}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        )
+    }
+
+    <Content />
+</BaseProseLayout>
