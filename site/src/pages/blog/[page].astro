@@ -6,7 +6,7 @@ import { getAllBlogPosts } from "../../code/content";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const posts = await getAllBlogPosts();
-    const routes = paginate(posts, { pageSize: 3 });
+    const routes = paginate(posts, { pageSize: 10 });
     return routes;
 }
 

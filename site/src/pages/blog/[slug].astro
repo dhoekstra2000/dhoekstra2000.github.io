@@ -25,7 +25,7 @@ const { headings, Content } = await render(post);
     <div class="not-prose mb-4">
         <h1 class="font-bold text-4xl">{title}</h1>
         <p class="text-lg text-slate-600">
-            Published on {pubDate.toLocaleDateString()}
+            Published on {pubDate.toLocaleDateString("en-UK")}
             {tags.map((tag) => <TagComponent>{tag}</TagComponent>)}
         </p>
         <p class="text-xl font-light tracking-wide">{description}</p>

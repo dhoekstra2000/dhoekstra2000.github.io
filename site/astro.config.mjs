@@ -5,7 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 import mdx from '@astrojs/mdx';
 import remarkMath from 'remark-math';
-import rehypeMath from 'rehype-mathjax';
 import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
