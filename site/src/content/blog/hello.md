@@ -6,6 +6,12 @@ tags: [personal,blog]
 ---
 
 ## A section title
+Here we test some mathematics. The lift ($L$) is this.
+
+And we have
+$$
+\int_0^\infty e^{-x^2}\,dx = \sqrt{\pi}.
+$$
 
 ### A subsection title
 
