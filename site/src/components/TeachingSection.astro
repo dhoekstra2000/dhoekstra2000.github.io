@@ -14,6 +14,7 @@ teaching = teaching.sort((a, b) =>
                     {course.data.role} for <strong>{course.data.title}</strong>{" "}
                     ({course.data.institute}, {course.data.period}{" "}
                     {course.data.year})
+                    {course.data.short_links && (<ul>{course.data.short_links.map((link) => <li><a href={link.url}>{link.text}</a></li>)}</ul>)}
                 </li>
             ))
         }

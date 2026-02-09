@@ -12,7 +12,11 @@ const teaching = defineCollection({
         institute: z.string(),
         year: z.number(),
         start_date: z.date(),
-        period: z.string()
+        period: z.string(),
+        short_links: z.array(z.object({
+            text: z.string(),
+            url: z.string(),
+        })).optional(),
     })
 });
 
