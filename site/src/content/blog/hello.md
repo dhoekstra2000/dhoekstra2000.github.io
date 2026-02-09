@@ -11,7 +11,7 @@ Behind the scenes my website has gone through over a few iterations since I have
 
 However, at some point I decided I would like to take a dab at blogging and my MacGyvered system underlying the website was no longer so convenient as it was first conceived. So I put the blogging idea off. Until I thought of it again.
 
-The problem was two-fold. On the one hand, students asked my during tutorial sessions some questions that sparked further ideas, that would have been nice to elaborate on later. On the other hand, I was sometimes doing some mathematics and felt like I wanted to tell someone about it (and a blog post published into the nothingness seems palatable than giving a random person a short unsolicited lecture on some mathematics I am thinking about at any given moment). But I was not ready for building a blog into my org-mode publishing setup.
+The problem was two-fold. On the one hand, students asked me during tutorial sessions some questions that sparked further ideas, that would have been nice to elaborate on later. On the other hand, I was sometimes doing some mathematics and felt like I wanted to tell someone about it (and a blog post published into the nothingness seems palatable than giving a random person a short unsolicited lecture on some mathematics I am thinking about at any given moment). But I was not ready for building a blog into my org-mode publishing setup.
 
 So last week, I finally decided to do something about it. Over the course of a few days, I ported my website to [Astro](https://astro.build/), a static site generator that gave me both the freedom to build whatever I would want, and an ecosystem of tools and plug-ins that does most of the heavy lifting for me.
 
