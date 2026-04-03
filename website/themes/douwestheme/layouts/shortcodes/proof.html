@@ -1,0 +1,12 @@
+{{/* themes/douwestheme/layouts/shortcodes/proof.html */}}
+{{ $page := .Page }}
+{{ $proofList := $page.Scratch.Get "proofList" | default slice }}
+{{ $env := dict "label" (.Get "label") "title" (.Get "title") }}
+{{ $proofList = $proofList | append $env }}
+{{ $page.Scratch.Set "proofList" $proofList }}
+{{ $envIndex := len $proofList }}
+{{ with .Get "label" }}{{ $page.Scratch.Set (print "proofLabel-" .) $envIndex }}{{ end }}
+<details class="math-env math-env-proof mb-4 p-4 border rounded bg-slate-50"{{ with .Get "label" }} id="{{ . }}"{{ end }}>
+  <summary class="font-semibold">Proof{{ if .Get "title" }} ({{ .Get "title" }}){{ end }}.</summary>
+  <div class="mt-2">{{ .Inner | markdownify }}</div>
+</details>

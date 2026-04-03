@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  {{ range .Pages }}
+    <section>
+      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+      {{ .Summary }}
+    </section>
+  {{ end }}
+{{ end }}
+{{ define "extraheader" }}
+{{ $page := .}}
+{{ with .Params.menu_name }}
+<div class="bg-sky-200">
+<div class="max-w-5xl py-2 px-4 m-auto">
+  {{ partial "sectionmenu.html" (dict "page" $page "menuID" . ) }}
+</div>
+</div>
+{{ end }}
+{{ end }}

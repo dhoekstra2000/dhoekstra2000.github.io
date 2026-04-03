@@ -1,0 +1,31 @@
+baseURL = 'https://example.org/'
+locale = 'en-US'
+title = 'My New Hugo Project'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+[params]
+  math = true
+
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Blog'
+    pageRef = '/posts'
+    weight = 20
+  
+  [[menus.blog]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 10

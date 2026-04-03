@@ -1,0 +1,53 @@
+{{/* themes/douwestheme/layouts/shortcodes/cite.html */}}
+{{ $page := .Page }}
+{{ $citations := .Get 0 | default "" }}
+
+{{/* Parse citations like [@smith2020] or [@smith2020, p. 42] or [@smith2020; @brown2019] */}}
+{{ $citationList := slice }}
+{{ if $citations }}
+  {{/* Remove brackets and split by semicolon */}}
+  {{ $cleanCitations := $citations | replaceRE `^\[|\]$` "" }}
+  {{ $citationItems := split $cleanCitations ";" }}
+  {{ range $citationItems }}
+    {{ $item := . | strings.TrimSpace }}
+    {{/* Split by comma to separate key from suffix */}}
+    {{ $parts := split $item "," }}
+    {{ $key := index $parts 0 | strings.TrimSpace | replaceRE `^@` "" }}
+    {{ $suffix := "" }}
+    {{ if gt (len $parts) 1 }}
+      {{ $suffix = (after (findRE `,` $item) $item) | strings.TrimSpace }}
+    {{ end }}
+    {{ $citationList = $citationList | append (dict "key" $key "suffix" $suffix) }}
+  {{ end }}
+{{ end }}
+
+{{/* Track citations for this page */}}
+{{ $pageCitations := $page.Scratch.Get "citations" | default slice }}
+{{ range $citationList }}
+  {{ if not (in $pageCitations .key) }}
+    {{ $pageCitations = $pageCitations | append .key }}
+  {{ end }}
+{{ end }}
+{{ $page.Scratch.Set "citations" $pageCitations }}
+
+{{/* Generate citation links */}}
+{{ $output := "" }}
+{{ range $i, $citation := $citationList }}
+  {{ $bibEntry := index $.Site.Data.bibliography $citation.key }}
+  {{ if $bibEntry }}
+    {{ $link := printf "#bib-%s" $citation.key }}
+    {{ $text := printf "[%d" (add $i 1) }}
+    {{ if $citation.suffix }}
+      {{ $text = printf "%s, %s" $text $citation.suffix }}
+    {{ end }}
+    {{ $text = printf "%s]" $text }}
+    {{ $output = printf "%s<a href=\"%s\" class=\"citation\">%s</a>" $output $link $text }}
+  {{ else }}
+    {{ $output = printf "%s<span class=\"citation-error\">[unknown citation: %s]</span>" $output $citation.key }}
+  {{ end }}
+  {{ if lt (add $i 1) (len $citationList) }}
+    {{ $output = printf "%s; " $output }}
+  {{ end }}
+{{ end }}
+
+{{ $output | safeHTML }}

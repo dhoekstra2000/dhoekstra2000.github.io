@@ -1,0 +1,40 @@
+{{/* themes/douwestheme/layouts/_partials/bibliography.html */}}
+{{ $citations := .Scratch.Get "citations" | default slice }}
+
+{{ if $citations }}
+<div class="bibliography">
+  <h2>References</h2>
+  <ol class="bibliography-list">
+  {{ range $citations }}
+    {{ $key := . }}
+    {{ $entry := index $.Site.Data.bibliography $key }}
+    {{ if $entry }}
+    <li id="bib-{{ $key }}" class="bibliography-entry">
+      {{ if eq $entry.type "article" }}
+        {{ $entry.author }}. "{{ $entry.title }}." <em>{{ $entry.journal }}</em>
+        {{ if $entry.volume }}{{ $entry.volume }}{{ end }}
+        {{ if $entry.number }}({{ $entry.number }}){{ end }}
+        {{ if and $entry.volume $entry.pages }}: {{ $entry.pages }}{{ else if $entry.pages }}{{ $entry.pages }}{{ end }}
+        ({{ $entry.year }}).
+        {{ if $entry.doi }}<a href="https://doi.org/{{ $entry.doi }}">https://doi.org/{{ $entry.doi }}</a>{{ end }}
+      {{ else if eq $entry.type "book" }}
+        {{ $entry.author }}. <em>{{ $entry.title }}</em>.
+        {{ $entry.publisher }}, {{ $entry.year }}.
+        {{ if $entry.isbn }}ISBN: {{ $entry.isbn }}{{ end }}
+      {{ else if eq $entry.type "inproceedings" }}
+        {{ $entry.author }}. "{{ $entry.title }}."
+        In <em>{{ $entry.booktitle }}</em>
+        {{ if $entry.pages }}, pp. {{ $entry.pages }}{{ end }}
+        ({{ $entry.year }}).
+      {{ else }}
+        {{/* Generic format */}}
+        {{ $entry.author }}. "{{ $entry.title }}."
+        {{ if $entry.journal }}<em>{{ $entry.journal }}</em>{{ end }}
+        {{ if $entry.year }} ({{ $entry.year }}).{{ end }}
+      {{ end }}
+    </li>
+    {{ end }}
+  {{ end }}
+  </ol>
+</div>
+{{ end }}

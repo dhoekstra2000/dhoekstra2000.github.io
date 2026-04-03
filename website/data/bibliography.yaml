@@ -1,0 +1,30 @@
+# Bibliography entries
+# Each entry should have a unique key (used in citations)
+# and metadata fields
+
+smith2020:
+  type: article
+  author: "Smith, John and Doe, Jane"
+  title: "A Comprehensive Study of Modern Mathematics"
+  journal: "Journal of Mathematical Studies"
+  year: 2020
+  volume: 15
+  number: 3
+  pages: "123-145"
+  doi: "10.1000/jmath.2020.001"
+
+brown2019:
+  type: book
+  author: "Brown, Robert"
+  title: "Introduction to Algebraic Geometry"
+  publisher: "Academic Press"
+  year: 2019
+  isbn: "978-0123456789"
+
+jones2021:
+  type: inproceedings
+  author: "Jones, Mary"
+  title: "Advances in Differential Geometry"
+  booktitle: "Proceedings of the International Conference on Geometry"
+  year: 2021
+  pages: "67-89"

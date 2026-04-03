@@ -1,0 +1,20 @@
+emails:
+  - email: d.hoekstra [at] uu.nl
+    description: Primary email at Utrecht University
+  - email: math [at] dhoekstra.xyz
+    description: Private email address
+work_address: |
+  Hans Freudenthal building
+  Room 8.04
+  Budapestlaan 6
+  3584 CD Utrecht
+  The Netherlands
+online_presence:
+  - name: Profile page at Utrecht University
+    url: https://uu.nl/staff/DHoekstra
+  - name: ORCiD
+    url: https://orcid.org/0000-0002-9598-4705
+  - name: LinkedIn
+    url: https://linkedin.com/in/d-hoekstra
+  - name: GitHub
+    url: https://github.com/dhoekstra2000

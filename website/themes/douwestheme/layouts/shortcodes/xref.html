@@ -1,0 +1,15 @@
+{{/* themes/douwestheme/layouts/shortcodes/xref.html */}}
+{{ $page := .Page }}
+{{ $type := .Get "type" | default "theorem" }}
+{{ $label := .Get "to" }}
+{{ if not $label }}<span class="text-red-600">[xref missing target]</span>{{ else }}
+{{ $key := print $type "Label-" $label }}
+{{ $num := $page.Scratch.Get $key }}
+{{ $name := "" }}
+{{ if eq $type "theorem" }}{{ $name = "Theorem" }}{{ else if eq $type "definition" }}{{ $name = "Definition" }}{{ else if eq $type "proof" }}{{ $name = "Proof" }}{{ else }}{{ $name = (printf "%s" (title $type)) }}{{ end }}
+{{ if $num }}
+<a href="#{{ $label }}">{{ $name }} {{ $num }}</a>
+{{ else }}
+<span class="xref-placeholder" data-xref-label="{{ $label }}">[resolving {{ $name }} reference...]</span>
+{{ end }}
+{{ end }}

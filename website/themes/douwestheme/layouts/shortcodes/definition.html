@@ -1,0 +1,14 @@
+{{/* themes/douwestheme/layouts/shortcodes/definition.html */}}
+{{ $page := .Page }}
+{{ $definitionList := $page.Scratch.Get "definitionList" | default slice }}
+{{ $env := dict "label" (.Get "label") "title" (.Get "title") }}
+{{ $definitionList = $definitionList | append $env }}
+{{ $page.Scratch.Set "definitionList" $definitionList }}
+{{ $envIndex := len $definitionList }}
+{{ with .Get "label" }}{{ $page.Scratch.Set (print "definitionLabel-" .) $envIndex }}{{ end }}
+<div class="math-env math-env-definition mb-4 p-4 border rounded"{{ with .Get "label" }} id="{{ . }}"{{ end }}>
+  <div class="font-semibold">
+    Definition {{ $envIndex }}{{ with .Get "title" }}: {{ . }}{{ end }}
+  </div>
+  <div class="mt-2">{{ .Inner | markdownify }}</div>
+</div>

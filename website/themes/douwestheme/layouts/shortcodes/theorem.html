@@ -1,0 +1,14 @@
+{{/* themes/douwestheme/layouts/shortcodes/theorem.html */}}
+{{ $page := .Page }}
+{{ $theoremList := $page.Scratch.Get "theoremList" | default slice }}
+{{ $env := dict "label" (.Get "label") "title" (.Get "title") }}
+{{ $theoremList = $theoremList | append $env }}
+{{ $page.Scratch.Set "theoremList" $theoremList }}
+{{ $envIndex := len $theoremList }}
+{{ with .Get "label" }}{{ $page.Scratch.Set (print "theoremLabel-" .) $envIndex }}{{ end }}
+<div class="math-env math-env-theorem mb-4 p-4 border rounded"{{ with .Get "label" }} id="{{ . }}"{{ end }}>
+  <div class="font-semibold">
+    {{ with .Get "type" }}{{ (strings.FirstUpper .) }}{{ else }}Theorem{{ end }} {{ $envIndex }}{{ with .Get "title" }}: {{ . }}{{ end }}
+  </div>
+  <div class="mt-2">{{ .Inner | markdownify }}</div>
+</div>

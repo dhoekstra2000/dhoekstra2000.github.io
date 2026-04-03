@@ -1,0 +1,5 @@
+baseURL = 'https://dhoekstra.xyz/'
+locale = 'en-gb'
+title = 'Douwe Hoekstra'
+
+theme = 'douwestheme'

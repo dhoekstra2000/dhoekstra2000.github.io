@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body class="bg-slate-100 font-serif">
+  <header>
+    {{ partial "header.html" . }}
+    {{ block "extraheader" . }}{{ end }}
+  </header>
+  <main class="max-w-5xl m-auto px-4">
+    <div class="prose prose-slate max-w-none text-black prose-a:text-slate-700 prose-a:underline prose-a:hover:no-underline py-4">
+    {{ block "main" . }}{{ end }}
+    </div>
+  </main>
+  <footer>
+    {{ partial "footer.html" . }}
+  </footer>
+</body>
+</html>

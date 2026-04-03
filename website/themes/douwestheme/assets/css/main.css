@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "hugo_stats.json";
+
+@theme {
+    --font-serif: "Aleo", Georgia, Cambria, "Times New Roman", serif;
+}
+
+.math-env { @apply my-4 p-4 border rounded; }
+.math-env-theorem { @apply border-blue-300 bg-blue-50; }
+.math-env-definition { @apply border-green-300 bg-green-50; }
+.math-env-proof { @apply border-slate-300 bg-slate-100; }
+
+/* Bibliography and citation styles */
+.bibliography {
+  @apply mt-8 pt-6 border-t border-gray-300;
+}
+
+.bibliography h2 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.bibliography-list {
+  @apply list-decimal list-inside space-y-2;
+}
+
+.bibliography-entry {
+  @apply text-sm leading-relaxed;
+}
+
+.citation {
+  @apply text-blue-600 hover:text-blue-800 no-underline;
+}
+
+.citation-error {
+  @apply text-red-600 bg-red-50 px-1 rounded;
+}
