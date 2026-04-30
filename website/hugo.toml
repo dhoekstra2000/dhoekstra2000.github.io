@@ -3,3 +3,7 @@ locale = 'en-gb'
 title = 'Douwe Hoekstra'
 
 theme = 'douwestheme'
+
+# For org export
+[markup.goldmark.renderer]
+  unsafe = true
