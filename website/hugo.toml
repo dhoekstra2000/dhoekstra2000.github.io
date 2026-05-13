@@ -4,6 +4,16 @@ title = 'Douwe Hoekstra'
 
 theme = 'douwestheme'
 
+[author]
+  name = 'Douwe Hoekstra'
+  email = 'math@dhoekstra.xyz'
+
 # For org export
 [markup.goldmark.renderer]
   unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]

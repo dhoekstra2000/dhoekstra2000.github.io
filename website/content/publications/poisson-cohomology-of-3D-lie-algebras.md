@@ -8,6 +8,4 @@ journal: Journal of Geometry and Physics
 volume: 191
 year: 2023
 arXiv: "2211.04122"
-build:
-  render: link
 ---
