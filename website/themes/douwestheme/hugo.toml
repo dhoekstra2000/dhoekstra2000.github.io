@@ -13,7 +13,6 @@ title = 'My New Hugo Project'
 [params]
   math = true
 
-
 [menus]
   [[menus.main]]
     name = 'Home'
