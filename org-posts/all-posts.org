@@ -111,3 +111,17 @@ So by normalizing the \(h_{\beta}\), we have found a set of dual forms and so by
 ** Footnotes
 
 [fn:1] One can argue that for finite-dimensional vector spaces, the existence of a basis is constructive. However, this is some algorithmic procedure that does not readily give a closed form for all basis elements at once.
+
+* The Boring Internet :web:thoughts:
+SCHEDULED: <2026-05-13 Wed>
+:PROPERTIES:
+:EXPORT_FILE_NAME: the-boring-internet
+:END:
+A few days ago I read the essay [[https://www.terrygodier.com/the-boring-internet][The Boring Internet]] by Terry Godier. This essay really resonated with me and reminded me of appeal that old school internet technologies always have had on me. I will share some of my thoughts on the essay here.
+#+hugo: more
+
+Terry makes the point that the Big Tech companies and their services are just the top layer of the internet. He calls this a "commercial veneer". He then discusses some of the technologies and protocols making up the lower layers of the internet.
+
+He makes the point that these protocols differ from the services and platforms in the sense that they are not owned by anyone, but rather are open standards that people agreed on decades ago. A good example of this is email; irrespective of your email provider you can send emails to every other email account. This interoperability is something that we now see a resurgence of with the [[https://en.wikipedia.org/wiki/Fediverse][Fediverse]].
+
+The essay also motivated me to tinker a bit with this website. I have now set up an [[https://en.wikipedia.org/wiki/RSS][RSS feed]] for my website. Whenever I add something new, you can now get an update about it through [[https://dhoekstra.xyz/index.xml][this feed]].
