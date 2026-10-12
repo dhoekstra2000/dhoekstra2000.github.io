@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --font-serif: "Aleo", Georgia, Cambria, "Times New Roman", serif;
+}
+
+body {
+    @apply bg-slate-100 font-serif;
+}
+
+.main-container {
+    @apply max-w-5xl m-auto px-4;
+}
+
+.main-content {
+    @apply prose prose-slate max-w-none text-black prose-a:text-slate-700 prose-a:underline prose-a:hover:no-underline;
+}
+
+.navbar-background {
+    @apply bg-sky-600;
+}
+
+.navbar-container {
+    @apply max-w-5xl py-2 px-4 m-auto flex flex-row justify-between items-center;
+}
+
+.navbar-name {
+    @apply text-center font-bold text-4xl text-slate-100;
+}
+
+.navbar-navs-container {
+    @apply flex flex-col md:flex-row space-x-4 justify-end;
+}
+
+.navbar-nav {
+    @apply text-2xl text-slate-100;
+}
+
+.footer-background {
+    @apply bg-sky-600;
+}
+
+.footer-container {
+    @apply w-fit m-auto p-2;
+}
+
+.footer-text {
+    @apply text-slate-100 font-serif font-medium text-base;
+}
+
+.bio-section {
+    @apply flex flex-col md:flex-row items-center;
+}
+
+.bio-section-image {
+    @apply md:w-1/3 pe-4;
+}
+
+.bio-section-text {
+    @apply md:w-2/3 ps-4;
+}
+
+.title-block {
+    @apply pt-4;
+}
+
+.title-text {
+    @apply font-bold text-4xl;
+}
+
+.subtitle {
+    @apply text-2xl text-slate-600;
+}
+
+.publication-date {
+    @apply text-lg text-slate-600;
+}
+
+.math-env {
+    @apply my-1 py-2 px-4 border rounded;
+}
+
+.math-env-theorem {
+    @apply border-blue-300 bg-blue-50;
+}
+
+.math-env-definition {
+    @apply border-green-300 bg-green-50;
+}
+
+.math-env-proof {
+    @apply border-slate-300 bg-slate-50;
+}
+
+.math-theorem-heading {
+    @apply font-semibold;
+}

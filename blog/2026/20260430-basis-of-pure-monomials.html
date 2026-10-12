@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Basis of Pure Monomials | Douwe Hoekstra</title>
+<meta name="author" content="Douwe Hoekstra" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" defer href="/assets/css/output.css" />
+<link rel="stylesheet" type="text/css" defer href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" />
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body><header>
+<div class="navbar-background">
+  <div class="navbar-container">
+    <div>
+      <a href="/"
+        ><div
+          class="navbar-name"
+        >
+          Douwe Hoekstra
+        </div>
+      </a>
+    </div>
+    <div>
+      <nav class="navbar-navs-container">
+	<div>
+	  <a class="navbar-nav" href="/">Home</a>
+	</div>
+	<div>
+	  <a class="navbar-nav" href="/blog">Blog</a>
+	</div>
+      </nav>
+    </div>
+  </div>
+</div>
+</header>
+<main class="main-container"><div class="title-block">
+<h1 class="title-text">Basis of Pure Monomials</h1>
+</div><div class="main-content"><p>
+For of my research projects, I needed to decompose a multivariate polynomial into a linear combination of so-called <i>pure</i> monomials. These are monomials of the form \(\lambda^r\) where \(\lambda\) is some linear form. I had never read the proof that such a basis exists, but it turned out that the proof is quite neat, so I decided to write a short exposition of this proof here (mainly for my own reference). This is based on parts of the first two chapters of (<a href="#citeproc_bib_item_2">Reznick 1992</a>).
+</p>
+
+<p>
+Let us set the stage: We work over the real numbers. Then we can consider polynomials of degree \(d\) on \(\mathbb{R}^n\), the set of which we denote by \(\mathrm{Pol}^d(\mathbb{R}^n)\). Bourbaki (<a href="#citeproc_bib_item_1">2007</a>) tells us that we can identify \(\mathrm{Pol}^d(\mathbb{R}^n) \cong \mathrm{Sym}^d((\mathbb{R}^n)^{\ast})\), the \(d\)th symmetric tensor power of forms on \(\mathbb{R}^n\). From this we see that \(\mathrm{Pol}^d(\mathbb{R}^n)\) is a finite-dimensional vector space with dimension \(\dim \mathrm{Pol}^d(\mathbb{R}^n) = \binom{n + d - 1}{d}\) (See for example <a href="https://math.stackexchange.com/q/94036">this mathSE question</a>). We have a standard basis \(dx^1,\ldots,dx^n\) of \(\mathbb{R}^n\) induced by the standard coordinates on \(\mathbb{R}^n\). Our first goal now is to obtain a more concrete expression for multivariate polynomials.
+</p>
+
+<p>
+It is useful to use multi-indices to write expressions with polynomials. A multi-index is an \(n\)-tuple \(\alpha \in \mathbb{N}^n\) and it indicates the number of times each coordinate is chosen: So the \(i\)th coordinate is chosen \(\alpha_i\) times. The <i>degree</i> of the multi-index is \(|\alpha| = \sum_{i = 1}^n\alpha_i\) and its factorial is \(\alpha! = \prod_{i = 1}^n \alpha_i!\). We denote the set of all multi-indices in dimension \(n\) of degree \(d\) by
+</p>
+\begin{equation*}
+\mathcal{I}(n, d) = \{ \alpha \in \mathbb{N}^n \mid |\alpha| = d \}.
+\end{equation*}
+<p>
+Then the set \(\{dx^{\alpha} \mid \alpha \in \mathcal{I}(n, d)\}\) is a basis for \(\mathrm{Pol}^d(\mathbb{R}^n)\). We also introduce the following shorthand for the multinomial coefficient
+</p>
+\begin{equation*}
+c(\alpha) = \frac{|\alpha|!}{\alpha!}.
+\end{equation*}
+<p>
+Then any polynomial \(p \in \mathrm{Pol}^d(\mathbb{R}^n)\) can written as
+\[
+p = \sum_{\alpha \in \mathcal{I}(n, d)} c(\alpha) a(p;\alpha) dx^{\alpha},
+\]
+for real numbers \(a(p; \alpha)\).
+</p>
+
+<p>
+We now introduce an inner product on \(\mathrm{Pol}^d(\mathbb{R}^n)\). For all \(p, q \in \mathrm{Pol}^d(\mathbb{R}^n)\), we define
+\[
+\langle p, q \rangle = \sum_{\alpha \in \mathcal{I}(n, d)} c(\alpha)a(p;\alpha)a(q;\alpha).
+\]
+This is a inner product since it can be seen as an \(L^2\)-inner product with respect to some weighted counting measure on \(\mathcal{I}(n, d)\).
+</p>
+
+<p>
+For each vector \(v \in \mathbb{R}^n\), we get a degree \(d\) polynomial by the usual dot product on \(\mathbb{R}^n\). That is, for \(x \in \mathbb{R}^n\) we have
+\[
+(v\cdot)^d(x) := (v \cdot x)^d = \left( \sum_{i = 1}^n v^ix^i \right)^d = \sum_{\alpha \in \mathcal{I}(n, d)} c(\alpha) v^{\alpha}x^{\alpha}.
+\]
+This demonstrates that \(a((v\cdot)^d; \alpha) = v^{\alpha}\). Then we observe that for any polynomial \(p \in \mathrm{Pol}^d(\mathbb{R}^n)\), we have
+\[
+\langle p, (v \cdot)^d \rangle = \sum_{\alpha \in \mathcal{I}(n, d)} c(\alpha)a(p; \alpha)v^{\alpha} = p(v).
+\]
+</p>
+
+<p>
+For a subset \(A \subset \mathbb{R}^n\) we define
+</p>
+\begin{equation*}
+\mathrm{span}_d(A) = \left\{ \sum_k \lambda_k (v_k\cdot)^d \middle| v_k \in A, \lambda_k \in \mathbb{R} \right\}.
+\end{equation*}
+
+<p>
+We can use the observation above to give an description of the orthogonal complement of \(\mathrm{span}_d(A)\):
+</p>
+\begin{equation*}
+\mathrm{span}_d(A)^{\perp} = \{ p \in \mathrm{Pol}^d(\mathbb{R}^n) \mid \forall v \in A, p(v) = 0\}.
+\end{equation*}
+
+<p>
+This is reminiscent of the vanishing ideal in algebraic geometry, which is \(I(A) = \{p \in \mathbb{R}[X_{1},\ldots,X_n] \mid \forall v \in A, p(v) = 0\}\). In fact, \(\mathrm{span}_d(A)^{\perp} = I(A) \cap \mathrm{Pol}^d(\mathbb{R}^n).\)
+</p>
+
+<div class="math-env math-env-definition">
+<div class="math-theorem-heading">Definition 1.</div>
+<p>
+We say that a set \(A \subset \mathbb{R}\) is <i>\(d\)-independent</i> if the set \(\{(v \cdot)^d \mid v \in A\}\) is linearly independent in \(\mathrm{Pol}^d(\mathbb{R}^n)\).
+</p>
+</div>
+
+<p>
+Then the first result is:
+</p>
+<div class="math-env math-env-theorem">
+<div class="math-theorem-heading">Theorem 2.</div>
+<p>
+For all \(n, d \geq 0\), the space \(\mathrm{Pol}^d(\mathbb{R}^n)\) admits a \(d\)-independent spanning set \(A \subset \mathbb{R}^n\). That is, \(\mathrm{Pol}^d(\mathbb{R}^n)\) admits a basis of polynomials of the form \((v \cdot)^d\).
+</p>
+</div>
+<details class="math-env math-env-proof">
+<summary class="math-proof-heading">Proof.</summary>
+<div>
+<p>
+By the discussion above we have \(\mathrm{span}_d(\mathbb{R}^n)^{\perp} = I(\mathbb{R}^n) \cap \mathrm{Pol}^d(\mathbb{R}^n)\). But the only polynomial that is zero on all of \(\mathbb{R}^n\) is the zero polynomial, so \(I(\mathbb{R}^n) = 0\), hence \(\mathrm{span}_d(\mathbb{R}^n)^{\perp} = 0\). But then it follows that \(\mathrm{span}_d(\mathbb{R}^n) = \mathrm{Pol}^d(\mathbb{R}^n)\) and so we can extract a basis from the set \(\{(v \cdot )^d \mid v \in \mathbb{R}^n\}\).
+</p>
+</div>
+</details>
+
+<p>
+This proof is not really constructive<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>, but luckily we can actually write down an explicit basis of this form. We have the following criterion to determine \(d\)-independence of a set.
+</p>
+
+<div class="math-env math-env-theorem">
+<div class="math-theorem-heading">Theorem 3 (Serret's theorem).</div>
+<p>
+The set \(A \subset \{\alpha_1,\ldots,\alpha_r\} \subset \mathbb{R}^n\) is \(d\)-independent if and only if there exist "dual forms": \(\{h_1,\ldots,h_r\} \subset \mathrm{Pol}^d(\mathbb{R}^n)\) such that \(h_j(\alpha_k) = \delta_{jk}\).
+</p>
+</div>
+<details class="math-env math-env-proof">
+<summary class="math-proof-heading">Proof.</summary>
+<div>
+<p>
+\((\Leftarrow)\) Suppose that such \(h_j\) exist and suppose that \(q = \sum_k \lambda_k (\alpha_k \cdot)^d - 0\). Then using our observation about inner products with \((v \cdot)^d\) we get
+</p>
+\begin{equation*}
+0 = \langle q, h_j \rangle = \left\langle \sum_k \lambda_k (\alpha_k \cdot)^d, h_j\right\rangle = \sum_k \lambda_k h_j(\alpha_k) = \lambda_j
+\end{equation*}
+<p>
+for all \(1 \leq j \leq r\). So it follows that \(A\) is \(d\)-independent.
+</p>
+
+<p>
+\((\Rightarrow)\) Suppose that \(\{\alpha_1,\ldots,\alpha_r\}\) are \(d\)-independent. Then the set \(\{(\alpha_1\cdot)^d,\ldots,(\alpha_r\cdot)^d\}\) is linearly independent in the inner product space \(\mathrm{Pol}^d(\mathbb{R}^n)\). So ?
+</p>
+</div>
+</details>
+
+<p>
+Note that we can view the set \(\mathcal{I}(n, d)\) of multi-indices as a subset of \(\mathbb{R}^n\). The following theorem tells us that this set even induces a basis of \(\mathrm{Pol}^d(\mathbb{R}^n)\). The idea of the proof is to construct the dual forms for Serret's theorem explicitly.
+</p>
+
+<div class="math-env math-env-theorem">
+<div class="math-theorem-heading">Theorem 4 (Bierman's theorem).</div>
+<p>
+The set \(\mathcal{I}(n, d) \subset \mathbb{R}^n\) is a \(d\)-independent spanning set of \(\mathrm{Pol}^d(\mathbb{R}^n)\).
+</p>
+</div>
+<details class="math-env math-env-proof">
+<summary class="math-proof-heading">Proof.</summary>
+<div>
+<p>
+We first note that \(|\mathcal{I}(n, d)| = \dim \mathrm{Pol}^d(\mathbb{R}^n)\), so \(\mathcal{I}(n, d)\) has the correct cardinality. It remains to show that it \(d\)-independent.
+</p>
+
+<p>
+Note that for \(\alpha \not= \beta \in \mathcal{I}(n, d)\) there exists a \(1 \leq j \leq r\) such that \(\alpha_j \leq \beta_j\) (We have an \(r\)-tuple of integers \(\varepsilon = \alpha - \beta \not= 0\) and \(|\varepsilon| = 0\), so it must contain at least one negative integer). So then the polynomial \(\prod_{k = 0}^{\beta_j - 1}(x_j - k)\) evaluates to \(0\) on \(\alpha\) while it evaluates to something non-zero on \(\beta\). However, this polynomial is not homogeneous. For all \(\alpha \in \mathcal{I}(n, d)\) we have by definition \(d = \alpha_1 + \cdots \alpha_n\), so the homogeneous polynomial
+</p>
+\begin{equation*}
+\prod_{k = 0}^{\beta_j - 1}(dx_j - k(x_1 + \cdots + x_n))
+\end{equation*}
+<p>
+is \(d\) times the previous polynomial on elements of \(\mathcal{I}(n, d)\). Then we define for each \(\beta \in \mathcal{I}(n, d)\)
+</p>
+\begin{equation*}
+h_{\beta}(x) = \prod_{j = 1}^n\prod_{k = 0}^{\beta_j - 1}(dx_j - k(x_1 + \cdots + x_n)).
+\end{equation*}
+<p>
+This a homogeneous polynomial of degree \(\beta_1 + \cdots + \beta_n = d\) so \(h_{\beta} \in \mathrm{Pol}^d(\mathbb{R}^n)\). Moreover, by the observation above, for all \(\alpha \in \mathrm{Pol}^d(\mathbb{R}^n)\), \(\alpha \not= \beta\), we have \(h_{\beta}(\alpha) = 0\). Finally,
+</p>
+\begin{equation*}
+h_{\beta}(\beta) = d^d\prod_j^n \prod_{k = 0}^{\beta_j - 1}(\beta_j - k) = d^d\prod_{j = 1}^n\beta_j! = d^d\beta! \not= 0.
+\end{equation*}
+<p>
+So by normalizing the \(h_{\beta}\), we have found a set of dual forms and so by Serret's theorem it follows that \(\mathcal{I}(n, d)\) is \(d\)-independent.
+</p>
+</div>
+</details>
+<div id="outline-container-orgc362384" class="outline-2">
+<h2 id="orgc362384">Bibliography</h2>
+<div class="outline-text-2" id="text-orgc362384">
+<style>.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}</style><div class="csl-bib-body">
+  <div class="csl-entry"><a id="citeproc_bib_item_1"></a>Bourbaki, Nicolas. 2007. <i>Algèbre</i>. Réimpression inchangée de l'éd. de 1981. Eléments de Mathématique 2. Springer.</div>
+  <div class="csl-entry"><a id="citeproc_bib_item_2"></a>Reznick, Bruce. 1992. “Sums of Even Powers of Real Linear Forms.” <i>Memoirs of the American Mathematical Society</i> 96 (463). <a href="https://doi.org/10.1090/memo/0463">https://doi.org/10.1090/memo/0463</a>.</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+One can argue that for finite-dimensional vector spaces, the existence of a basis is constructive. However, this is some algorithmic procedure that does not readily give a closed form for all basis elements at once.
+</p></div></div>
+
+
+</div>
+</div></div>
+  </main><footer>
+<div class="footer-background"> <div class="footer-container"> <p
+    class="footer-text"> Copyright 2026 &mdash; Douwe Hoekstra &mdash; Last updated: 12-10-2026 </p>
+    </div> </div> </footer></body>
+</html>

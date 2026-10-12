@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Douwe Hoekstra</title>
+<meta name="author" content="Douwe Hoekstra" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" defer href="/assets/css/output.css" />
+<link rel="stylesheet" type="text/css" defer href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" />
+</head>
+<body><header>
+<div class="navbar-background">
+  <div class="navbar-container">
+    <div>
+      <a href="/"
+        ><div
+          class="navbar-name"
+        >
+          Douwe Hoekstra
+        </div>
+      </a>
+    </div>
+    <div>
+      <nav class="navbar-navs-container">
+	<div>
+	  <a class="navbar-nav" href="/">Home</a>
+	</div>
+	<div>
+	  <a class="navbar-nav" href="/blog">Blog</a>
+	</div>
+      </nav>
+    </div>
+  </div>
+</div>
+</header>
+<main class="main-container"><div class="title-block">
+<h1 class="title-text"></h1>
+</div><div class="main-content"><section class="bio-section">
+<div class="bio-section-image">
+
+<figure id="orge62b1a2">
+<img src="../assets/images/profile_dhoekstra.jpeg" alt="profile_dhoekstra.jpeg">
+
+</figure>
+</div>
+<div class="bio-section-text">
+<p>
+I am a PhD candidate at the <a href="https://utrechtgeometrycentre.nl/">Utrecht Geometry Centre</a> under the
+supervision of <a href="https://alvarodelpino.com">Dr. Álvaro del Pino Gómez</a>. My work focusses on the
+h-principle and in particular convex integration as a method to prove
+h-principles.
+</p>
+
+<p>
+My interests lie more generally within the field of
+geometric/differential topology. The line between geometric topology,
+differential topology and differential geometry is blurry and the
+different fields have an important interplay, but at its simplest I am
+interested in the interplay between the geometric structure on a
+manifold and the underlying topology of the manifold (or other spaces
+associated to the geometric structure). To name a few examples in this
+spirit:
+</p>
+<ul class="org-ul">
+<li>The de Rham isomorphism theorem</li>
+<li>Morse functions</li>
+<li>Myers' theorem: complete Riemannian manifolds with positive Ricci curvature are compact</li>
+<li>Smale-Hirsch immersion theorem &amp; Smale's sphere eversion</li>
+</ul>
+
+<p>
+See the <a href="#org96f595e">contact section</a> for information on how to get in touch.
+</p>
+</div>
+</section>
+<div id="outline-container-orgc0d4584" class="outline-2">
+<h2 id="orgc0d4584">Education</h2>
+<div class="outline-text-2" id="text-orgc0d4584">
+<ul class="org-ul">
+<li>2021 &#x2013; 2024: MSc in Mathematics, Radboud University Nijmegen</li>
+<li>2018 &#x2013; 2021: BSc in Mathematics, Radboud University Nijmegen</li>
+<li>2018 &#x2013; 2021: BSc in Physics, Radboud University Nijmegen</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgefd030a" class="outline-2">
+<h2 id="orgefd030a">Publications</h2>
+<div class="outline-text-2" id="text-orgefd030a">
+<ul class="org-ul">
+<li>Douwe Hoekstra and Florian Zeiser, “Poisson Cohomology of 3D Lie Algebras,” <i>Journal of Geometry and Physics</i> 191 (2023): 104862, <a href="https://doi.org/10.1016/j.geomphys.2023.104862">https://doi.org/10.1016/j.geomphys.2023.104862</a>. <a href="https://arxiv.org/abs/2211.04122">arXiv:2211.04122</a>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfa326da" class="outline-2">
+<h2 id="orgfa326da">Teaching</h2>
+<div class="outline-text-2" id="text-orgfa326da">
+<ul class="org-ul">
+<li>Lecturer for <b>Proofs in Mathematics</b> (Utrecht University, Fall 2026)</li>
+<li>TA for <b>Analysis in several variables</b> (Utrecht University, Summer 2026)</li>
+<li>Lecturer <b>Proofs in Mathematics</b> (Utrecht University, Fall 2025)</li>
+<li>TA for <b>Analysis in several variables</b> (Utrecht University, Summer 2025)</li>
+<li>TA for <b>Topology and Geometry</b> (Utrecht University, Spring 2025)
+<ul class="org-ul">
+<li>Here are some <a href="../assets/documents/topology_review.pdf">notes reviewing point-set topology</a> for this course.</li>
+</ul></li>
+<li>TA for <b>Introduction to Topology</b> (Utrecht University, Winter 2024)</li>
+<li>TA for <b>Calculus B</b> (Radboud University, Spring 2024)</li>
+<li>TA for <b>Group Theory</b> (Radboud University, Spring 2024)</li>
+<li>TA for <b>Poisson Geometry</b> (Radboud University, Fall 2023)</li>
+<li>TA for <b>Functional Analysis</b> (Radboud University, Fall 2021)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org377e438" class="outline-2">
+<h2 id="org377e438">Notes</h2>
+<div class="outline-text-2" id="text-org377e438">
+<ul class="org-ul">
+<li><a href="../assets/documents/lecture_notes_VU_20260526.pdf">VU talk notes</a>: The notes I used for my talk about the triangular jet
+bundle at the Vrije Universiteit Amsterdam on May 26th, 2026.</li>
+<li><a href="../assets/documents/Matrix_Lie_Groups.pdf">Matrix Lie Groups</a>: Notes my colleague Sven Holtrop and I wrote for
+the Utrecht Summer School on Geometry in 2025.</li>
+<li><a href="../assets/documents/notes_differentiable_stacks_seminar_III.pdf">Differentiable Stacks Seminar III</a>: Notes I wrote for the seminar on
+differentiable stacks I took part in.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9156f2a" class="outline-2">
+<h2 id="org9156f2a">Ancillary activities</h2>
+<div class="outline-text-2" id="text-org9156f2a">
+<ul class="org-ul">
+<li>I am one of the organizers of the Friday Fish seminar at the Utrecht
+Geometry Centre. Check out the <a href="https://friday-fish.github.io">webpage of the seminar</a> to see what we
+are up to.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org96f595e" class="outline-2">
+<h2 id="org96f595e">Contact</h2>
+<div class="outline-text-2" id="text-org96f595e">
+<p>
+These are my contact details.
+</p>
+</div>
+<div id="outline-container-org6a99cc7" class="outline-3">
+<h3 id="org6a99cc7">Email</h3>
+<div class="outline-text-3" id="text-org6a99cc7">
+<ul class="org-ul">
+<li><code>d.hoekstra [at] uu.nl</code>: Primary email at Utrecht University</li>
+<li><code>math [at] dhoekstra.xyz</code>: Private email address</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org742ac4d" class="outline-3">
+<h3 id="org742ac4d">Work address</h3>
+<div class="outline-text-3" id="text-org742ac4d">
+<address>
+Hans Freudenthal building<br/>
+Room 8.04<br/>
+Budapestlaan 6<br/>
+3584 CD Utrecht<br/>
+The Netherlands<br/>
+</address>
+</div>
+</div>
+<div id="outline-container-org4c61106" class="outline-3">
+<h3 id="org4c61106">Online presence</h3>
+<div class="outline-text-3" id="text-org4c61106">
+<ul class="org-ul">
+<li><a href="https://uu.nl/staff/DHoekstra">Profile page at Utrecht University</a></li>
+<li><a href="https://orcid.org/0000-0002-9598-4705">ORCiD</a></li>
+<li><a href="https://linkedin.com/in/d-hoekstra">LinkedIn</a></li>
+<li><a href="https://github.com/dhoekstra2000">GitHub</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+  </main><footer>
+<div class="footer-background"> <div class="footer-container"> <p
+    class="footer-text"> Copyright 2026 &mdash; Douwe Hoekstra &mdash; Last updated: 12-10-2026 </p>
+    </div> </div> </footer></body>
+</html>
