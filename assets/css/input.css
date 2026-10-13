@@ -9,8 +9,12 @@ body {
     @apply bg-slate-100 font-serif;
 }
 
+.page {
+    @apply flex flex-col h-screen;
+}
+
 .main-container {
-    @apply max-w-5xl m-auto px-4;
+    @apply max-w-5xl m-auto px-4 grow;
 }
 
 .main-content {
@@ -38,7 +42,7 @@ body {
 }
 
 .footer-background {
-    @apply bg-sky-600;
+    @apply bg-sky-600 mt-2;
 }
 
 .footer-container {

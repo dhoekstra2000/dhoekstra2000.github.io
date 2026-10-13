@@ -190,9 +190,15 @@ body {
   background-color: var(--color-slate-100);
   font-family: var(--font-serif);
 }
+.page {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
 .main-container {
   margin: auto;
   max-width: var(--container-5xl);
+  flex-grow: 1;
   padding-inline: calc(var(--spacing) * 4);
 }
 .main-content {
@@ -694,6 +700,7 @@ body {
   color: var(--color-slate-100);
 }
 .footer-background {
+  margin-top: calc(var(--spacing) * 2);
   background-color: var(--color-sky-600);
 }
 .footer-container {
