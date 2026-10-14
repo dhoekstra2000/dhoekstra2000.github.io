@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cardinalities of some sets of functions | Douwe Hoekstra</title>
+<meta name="author" content="Douwe Hoekstra" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" defer href="/assets/css/output.css" />
+<link rel="stylesheet" type="text/css" defer href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" />
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div class="page"><header>
+<div class="navbar-background">
+  <div class="navbar-container">
+    <div>
+      <a href="/"
+        ><div
+          class="navbar-name"
+        >
+          Douwe Hoekstra
+        </div>
+      </a>
+    </div>
+      <nav class="navbar-navs-container">
+	<div>
+	  <a class="navbar-nav" href="/">Home</a>
+	</div>
+	<div>
+	  <a class="navbar-nav" href="/blog">Blog</a>
+	</div>
+      </nav>
+  </div>
+</div>
+</header>
+<main class="main-container"><div class="title-block">
+<h1 class="title-text">Cardinalities of some sets of functions</h1>
+<div class="publication-date">Publised on <time datetime="2026-10-14T00:00:00+0200">14 October 2026</time></div>
+</div><div class="main-content"><p>
+In the course I am currently teaching, we discussed cardinalities of
+sets today in class. In this short post, I want to present the proofs
+that some sets of functions \(\mathbb{N} \rightarrow \mathbb{N}\) are
+uncountable.
+</p>
+
+<p>
+The main ingredient for the proofs is the following theorem.
+</p>
+<div class="math-env math-env-theorem"id="cantors-theorem">
+<div class="math-theorem-heading">Theorem 1 (Cantor's theorem).</div>
+<p>
+The set \([2]^{\mathbb{N}}\) is uncountable (here \([2] = \{0, 1\}\)).
+</p>
+</div>
+
+<p>
+We will now use this to prove that the sets of injective, surjective
+and bijective functions from \(\mathbb{N}\) to \(\mathbb{N}\) are
+uncountable. The idea in all three cases is to find an injection from
+\([2]^{\mathbb{N}}\) to the set of functions we are considering. The
+proof for injective functions I learned from Niels Vooijs.
+</p>
+
+<div class="math-env math-env-theorem">
+<div class="math-theorem-heading">Proposition 2.</div>
+<p>
+The set of injective functions \(\mathbb{N} \rightarrow \mathbb{N}\) is uncountable.
+</p>
+</div>
+<details class="math-env math-env-proof">
+<summary class="math-proof-heading">Proof.</summary>
+<div>
+<p>
+We will in fact prove that the set of strictly monotonically
+increasing functions from \(\mathbb{N}\) to \(\mathbb{N}\) is
+uncountable. The idea is the following: Given \(\chi \in
+[2]^{\mathbb{N}}\), if \(\chi(k) = 0\) then we increase the value of
+the associated injection by \(1\) compared to the previous value and
+if \(\chi(k) = 1\), then we increase the value by 2 compared to the
+previous value.
+</p>
+
+<p>
+Define \(F\colon [2]^{\mathbb{N}} \rightarrow \mathrm{Inj}(\mathbb{N}, \mathbb{N})\) by
+</p>
+\begin{equation*}
+F(\chi) = k \mapsto k + \sum_{i = 0}^k \chi(k).
+\end{equation*}
+
+<p>
+We claim that \(F(\chi)\) is an injection. Let \(a, b \in \mathbb{N}\)
+and suppose \(F(\chi)(a) = F(\chi)(b)\). Without loss of generality,
+we may assume that \(a \le b\). Then we have
+</p>
+\begin{equation*}
+0 = (b - a) + \sum_{i = a + 1}^b \chi(i).
+\end{equation*}
+<p>
+Since \(b - a \ge 0\) and \(\chi(i) \ge 0\) for all \(i \in
+\mathbb{N}\), it follows that \(b - a = 0\), hence \(a = b\). So
+\(F(\chi)\) is injective, and hence \(F\) is well-defined.
+</p>
+
+<p>
+Now we claim that \(F\) is injective.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> Let \(\chi, \eta \in
+[2]^{\mathbb{N}}\) and suppose \(F(\chi) = F(\eta)\). Note that
+</p>
+\begin{equation*}
+F(\chi)(k + 1) - F(\chi)(k) - 1 = \left( k + 1 + \sum_{i = 0}^{k + 1} \chi(i) \right) - \left( k + 1 + \sum_{i = 0}^{k + 1} \chi(i) \right) - 1 = \chi(k + 1),
+\end{equation*}
+<p>
+so for \(k \ge 1\) it follows that
+</p>
+\begin{equation*}
+\chi(k) = F(\chi)(k) - F(\chi)(k - 1) - 1 = F(\eta)(k) - F(\eta)(k - 1) - 1 = \eta(k).
+\end{equation*}
+<p>
+For \(k = 0\) we have
+</p>
+\begin{equation*}
+\chi(0) = F(\chi)(0) = F(\eta)(0) = \eta(0).
+\end{equation*}
+<p>
+So indeed \(\chi = \eta\) and so \(F\) is injective.
+</p>
+
+<p>
+Hence it follows that the set of injective functions \(\mathbb{N}
+\rightarrow \mathbb{N}\) is uncountable.
+</p>
+</div>
+</details>
+
+<p>
+Next, we will tackle surjective functions, which is an alteration of
+the proof for injective functions. For this we cannot use all of
+\([2]^{\mathbb{N}}\) but only the uncountable subset \(U\) of those
+functions with \(\chi^{-1}[\{1\}]\) infinite.<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+</p>
+<div class="math-env math-env-theorem">
+<div class="math-theorem-heading">Proposition 3.</div>
+<p>
+The set of surjective functions \(\mathbb{N} \rightarrow \mathbb{N}\) is uncountable.
+</p>
+</div>
+<details class="math-env math-env-proof">
+<summary class="math-proof-heading">Proof.</summary>
+<div>
+<p>
+The idea is now to stay at the same value if \(\chi(k) = 0\) and to
+make a step forward if \(\chi(k) = 1\).
+</p>
+
+<p>
+Define a function \(F\colon U \rightarrow \mathrm{Surj}(\mathbb{N}, \mathbb{N})\) by
+</p>
+\begin{equation*}
+    F(\chi) = k \mapsto \sum_{i = 0}^{k - 1} \chi(i).
+\end{equation*}
+
+<p>
+We claim that \(F(\chi)\) is surjective for all \(\chi \in U\). Let
+\(n \in \mathbb{N}\). If \(n = 0\), then we have \(F(\chi)(0) = 0\),
+so in this case \(n\) is a value. Otherwise there is a \(k \in
+\mathbb{N}\) such that \(\sum_{i = 0}^{k - 1} \chi(i) = n\), since
+\(\chi^{-1}[\{1\}]\) is infinite.<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup> So in that case \(F(\chi)(k) =
+n\). So also if \(n \ge 1\), it is a value.  So \(F(\chi)\) is indeed surjective.
+</p>
+
+<p>
+Next, we show that \(F\) is injective. In this case we have for all
+\(k \in \mathbb{N}\) that
+</p>
+\begin{equation*}
+F(\chi)(k + 1) - F(\chi)(k) = \chi(k),
+\end{equation*}
+<p>
+so given \(\chi, \eta \in U\) such that \(F(\chi) = F(\eta)\), we see
+that for all \(k \in \mathbb{N}\)
+</p>
+\begin{equation*}
+\chi(k) = F(\chi)(k + 1) - F(\chi)(k) = F(\eta)(k + 1) - F(\eta)(k) = \eta(k).
+\end{equation*}
+<p>
+So \(\chi = \eta\), and so \(F\) is injective.
+</p>
+
+<p>
+So we see that the set of all surjective functions \(\mathbb{N}
+\rightarrow \mathbb{N}\) is also uncountable.
+</p>
+</div>
+</details>
+
+<p>
+Finally, we will show that the bijections \(\mathbb{N} \rightarrow
+\mathbb{N}\) is uncountable. The idea in this case is to use the
+function \(\chi\) to index swaps between even and odd numbers. In
+fact, in this case it is more natural to actually consider subsets of
+\(\mathbb{N}\), so this is what we will do.
+</p>
+<div class="math-env math-env-theorem">
+<div class="math-theorem-heading">Theorem 4.</div>
+<p>
+The set of bijections \(\mathbb{N} \rightarrow \mathbb{N}\) is uncountable.
+</p>
+</div>
+<details class="math-env math-env-proof">
+<summary class="math-proof-heading">Proof.</summary>
+<div>
+<p>
+Define a function \(F\colon \mathcal{P}(\mathbb{N}) \rightarrow \mathrm{Aut}(\mathbb{N})\) by
+</p>
+\begin{equation*}
+F(U)(x) = \begin{cases}
+2k + 1 \quad & x = 2k \text{ and } k \in U \\
+2k \quad & x = 2k + 1 \text{ and } k \in U \\
+x \quad & \text{otherwise}
+\end{cases}.
+\end{equation*}
+<p>
+The idea is to look at pairs of sequentially even and odd numbers and
+if \(k \in U\), then we swap the two numbers in the kth pair.
+</p>
+
+<p>
+We claim that \(F(U)\) is a bijection. We will show that
+\(F(U)^2 = \mathrm{id}\). Let \(x \in \mathbb{N}\). Then either \(x
+= 2k\) or \(x = 2k + 1\) for some \(k \in \mathbb{N}\).
+</p>
+<ul class="org-ul">
+<li><i>Case 1</i>: Suppose \(x = 2k\). If \(k \not\in U\), then we have
+\(F(U)(x) = x\), hence \(F(U)(x)^2 = x\). If \(k \in U\), then
+we have \(F(U)(x) = 2k + 1\) and we have \(F(U)(2k + 1) = 2k =
+  x\).</li>
+<li><i>Case 2</i>: Suppose \(x = 2k + 1\). If \(k \not\in U\), then we have
+\(F(U)(x) = x\), hence \(F(U)(x)^2 = x\). If \(k \in U\), then
+we have \(F(U)(x) = 2k\) and we have \(F(U)(2k) = 2k + 1 =
+  x\).</li>
+</ul>
+
+<p>
+So in all cases we have \(F(U)^2(x) = x\) and so \(F(U)\) is
+indeed a bijection.
+</p>
+
+<p>
+We now show that \(F\) is injective. Let \(U, V \in
+\mathcal{P}(\mathbb{N})\) and suppose that \(F(U) = F(V)\).  Let \(k
+\in U\). Then we have \(F(U)(2k) = 2k + 1\), hence \(F(V)(k) = 2k +
+1\), but then we see from the definition that we must have \(k \in
+V\). So \(U \subset V\). The reverse inclusion follows by the same
+argument with the roles of \(U\) and \(V\) swapped. So \(U = V\) and
+therefore \(F\) is an injection.
+</p>
+
+<p>
+So we conclude that the set of bijections \(\mathbb{N} \rightarrow
+\mathbb{N}\) is uncountable.
+</p>
+</div>
+</details>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Note that this is different from the previous injectivity
+claim. In the previous paragraph we were looking at one value of
+\(F\), which was again a function, and we showed that this function
+was injective. We are now going to prove that \(F\) as a function is
+injective.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+That this is an uncountable set follows from the following
+facts: There is a bijection between the power set
+\(\mathcal{P}(\mathbb{N})\) and \([2]^{\mathbb{N}}\) under which this
+subset corresponds to the infinite subsets; and the set of all finite
+subsets of \(\mathbb{N}\) is countable.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+In fact, we can explicitly describe this \(k\). This is
+precisely one plus the \(k\)th value \(\chi^{-1}[\{1\}]\) when ordered
+with the standard ordering from \(\mathbb{N}\).
+</p></div></div>
+
+
+</div>
+</div></div>
+  </main><footer>
+<div class="footer-background"> <div class="footer-container"> <p
+    class="footer-text"> Copyright 2026 &mdash; Douwe Hoekstra &mdash; Last updated: 14-10-2026 </p>
+    </div> </div> </footer></div></body>
+</html>
